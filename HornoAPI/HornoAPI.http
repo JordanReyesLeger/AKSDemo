@@ -1,0 +1,6 @@
+@HornoAPI_HostAddress = http://localhost:5120
+
+GET {{HornoAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
