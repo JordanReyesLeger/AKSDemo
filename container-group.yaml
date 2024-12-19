@@ -1,0 +1,41 @@
+apiVersion: 2019-12-01
+location: eastus
+name: myContainerGroup
+properties:
+  containers:
+  - name: pasteleriaapi
+    properties:
+      image: acrtspdev001.azurecr.io/pasteleriaapi:latest
+      ports:
+      - port: 8080
+      - port: 8081
+      resources:
+        requests:
+          cpu: 1.0
+          memoryInGb: 1.5
+  - name: pasteleriportal
+    properties:
+      image: acrtspdev001.azurecr.io/pasteleriportal:latest
+      ports:
+      - port: 80
+      - port: 8081
+      resources:
+        requests:
+          cpu: 1.0
+          memoryInGb: 1.5
+  osType: Linux
+  ipAddress:
+    type: Public
+    ports:
+    - protocol: tcp
+      port: 8080
+    - protocol: tcp
+      port: 8081
+    - protocol: tcp
+      port: 80
+  imageRegistryCredentials:
+  - server: acrtspdev001.azurecr.io
+    username: $(REGISTRY_USERNAME)
+    password: $(REGISTRY_PASSWORD)
+tags: {}
+type: Microsoft.ContainerInstance/containerGroups

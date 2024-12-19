@@ -17,6 +17,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Servic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interfaces", "Interfaces\Interfaces.csproj", "{D74142EE-4AED-45D6-BBD4-D302D5ECD2E1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pipelines", "Pipelines", "{283DA82B-F241-4484-AF86-11C4BF281799}"
+	ProjectSection(SolutionItems) = preProject
+		BuildAndPushImages.yml = BuildAndPushImages.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ContainerInstance", "ContainerInstance", "{4743DD29-A8C6-4A67-B002-CB028648C090}"
+	ProjectSection(SolutionItems) = preProject
+		container-group.yaml = container-group.yaml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
