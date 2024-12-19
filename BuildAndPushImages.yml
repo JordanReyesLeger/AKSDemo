@@ -65,8 +65,9 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    Contents: 'container-group.yaml'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)/ContainerInstance'
+    contents: '**/container-group.yaml'
+    targetFolder: '$(Build.ArtifactStagingDirectory)/ContainerInstance'
+    flattenFolders: true
 
 - task: PublishBuildArtifacts@1
   inputs:
