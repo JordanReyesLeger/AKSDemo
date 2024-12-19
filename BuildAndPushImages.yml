@@ -28,6 +28,17 @@ steps:
 
 - task: DotNetCoreCLI@2
   inputs:
+    command: 'restore'
+    projects: 'Portal/Portal.csproj'
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+    projects: 'Portal/Portal.csproj'
+    arguments: '--configuration $(buildConfiguration)'
+
+- task: DotNetCoreCLI@2
+  inputs:
     command: 'publish'
     projects: 'PasteleriaApi/PasteleriaApi.csproj'
     arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/publish'
@@ -35,14 +46,29 @@ steps:
 - task: Docker@2
   inputs:
     command: 'buildAndPush'
-    repository: 'acrtspdev001.azurecr.io/$(imageName)'
+    repository: 'acrtspdev001.azurecr.io/pasteleriaapi'
     Dockerfile: 'PasteleriaApi/Dockerfile'
     containerRegistry: 'TspAcr'
     tags: |
       $(Build.BuildId)
     buildContext: '$(Build.SourcesDirectory)'
 
+- task: Docker@2
+  inputs:
+    command: 'buildAndPush'
+    repository: 'acrtspdev001.azurecr.io/pasteleriportal'
+    Dockerfile: 'Portal/Dockerfile'
+    containerRegistry: 'TspAcr'
+    tags: |
+      $(Build.BuildId)
+    buildContext: '$(Build.SourcesDirectory)'
+
+- task: CopyFiles@2
+  inputs:
+    Contents: 'container-group.yaml'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)/ContainerInstance'
+
 - task: PublishBuildArtifacts@1
   inputs:
-    pathToPublish: '$(Build.ArtifactStagingDirectory)/publish'
-    artifactName: 'drop'
+    pathToPublish: '$(Build.ArtifactStagingDirectory)'
+    artifactName: 'Artefactos'
