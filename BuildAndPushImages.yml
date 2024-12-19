@@ -51,6 +51,7 @@ steps:
     containerRegistry: 'TspAcr'
     tags: |
       $(Build.BuildId)
+      latest
     buildContext: '$(Build.SourcesDirectory)'
 
 - task: Docker@2
@@ -61,6 +62,7 @@ steps:
     containerRegistry: 'TspAcr'
     tags: |
       $(Build.BuildId)
+      latest
     buildContext: '$(Build.SourcesDirectory)'
 
 - task: CopyFiles@2
