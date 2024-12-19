@@ -35,6 +35,6 @@ properties:
       port: 80
   imageRegistryCredentials:
     - server: acrtspdev001.azurecr.io
-      username: $(REGISTRY_USERNAME)
-      password: $(REGISTRY_PASSWORD)
+      username: acrtspdev001
+      password: Ovgdjk95nZSMdJ8q5AczDPVBsomDAbs2wHlJnNrqN3+ACRAG+TLl
 type: Microsoft.ContainerInstance/containerGroups
