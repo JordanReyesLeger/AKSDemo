@@ -1,0 +1,48 @@
+﻿@using Entities
+@model Pastel
+
+<!-- Mostrar mensajes de éxito o error -->
+@{
+    Html.RenderPartial("_Messages");
+}
+
+<h2 class="text-center mb-4">Crear un Nuevo Pastel</h2>
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <form asp-action="Crear" method="post" class="shadow-sm p-4 bg-white rounded">
+            <div class="mb-3">
+                <label for="Nombre" class="form-label">Nombre del Pastel</label>
+                <input type="text" id="Nombre" name="Nombre" class="form-control" placeholder="Ej. Pastel de Chocolate" value="@Model.Nombre" required />
+                @if (ViewData.Count > 0 && ViewData.ModelState["Nombre"]?.Errors?.Count > 0)
+                {
+                    <span class="text-danger">@ViewData.ModelState["Nombre"].Errors[0].ErrorMessage</span>
+                }
+            </div>
+
+            <div class="mb-3">
+                <label for="Sabor" class="form-label">Sabor</label>
+                <input type="text" id="Sabor" name="Sabor" class="form-control" placeholder="Ej. Chocolate" value="@Model.Sabor" required />
+                @if (ViewData.Count > 0 && ViewData.ModelState["Sabor"]?.Errors.Count > 0)
+                {
+                    <span class="text-danger">@ViewData.ModelState["Sabor"].Errors[0].ErrorMessage</span>
+                }
+            </div>
+
+            <div class="mb-3">
+                <label for="Tamaño" class="form-label">Tamaño (en pulgadas)</label>
+                <input type="number" id="Tamaño" name="Tamaño" class="form-control" placeholder="Ej. 12" value="@Model.Tamaño" required />
+                @if (ViewData.ModelState["Tamaño"]?.Errors.Count > 0)
+                {
+                    <span class="text-danger">@ViewData.ModelState["Tamaño"].Errors[0].ErrorMessage</span>
+                }
+            </div>
+
+            <button type="submit" class="btn btn-success w-100">Crear Pastel</button>
+        </form>
+    </div>
+</div>
+
+<div class="text-center mt-4">
+    <a href="/Pasteles" class="btn btn-secondary">Volver a la Lista</a>
+</div>

@@ -28,7 +28,7 @@ namespace Portal
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Pasteles}/{action=Index}/{id?}");
 
             app.Run();
         }

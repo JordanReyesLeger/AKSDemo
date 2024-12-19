@@ -1,4 +1,8 @@
 
+using Interfaces;
+using Repositories;
+using Services;
+
 namespace PasteleriaApi
 {
     public class Program
@@ -10,6 +14,8 @@ namespace PasteleriaApi
             // Add services to the container.
 
             builder.Services.AddControllers();
+            builder.Services.AddSingleton<IPastelRepository, PastelRepository>();
+            builder.Services.AddScoped<PasteleriaService>();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
