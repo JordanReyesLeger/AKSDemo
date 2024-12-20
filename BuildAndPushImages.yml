@@ -74,6 +74,12 @@ steps:
     targetFolder: '$(Build.ArtifactStagingDirectory)/ContainerInstance'
     flattenFolders: true
 
+- task: CopyFiles@2
+  inputs:
+    contents: '**/aks-deployment.yaml'
+    targetFolder: '$(Build.ArtifactStagingDirectory)/Aks'
+    flattenFolders: true
+
 - task: PublishBuildArtifacts@1
   inputs:
     pathToPublish: '$(Build.ArtifactStagingDirectory)'

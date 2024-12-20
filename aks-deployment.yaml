@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pasteleriaapi-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pasteleriaapi
+  template:
+    metadata:
+      labels:
+        app: pasteleriaapi
+    spec:
+      containers:
+      - name: pasteleriaapi
+        image: acrtspdev001.azurecr.io/pasteleriaapi:latest
+        ports:
+        - containerPort: 8080
+        - containerPort: 8081
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pasteleriaapi-service
+spec:
+  selector:
+    app: pasteleriaapi
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pasteleriportal-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pasteleriportal
+  template:
+    metadata:
+      labels:
+        app: pasteleriportal
+    spec:
+      containers:
+      - name: pasteleriportal
+        image: acrtspdev001.azurecr.io/pasteleriportal:latest
+        ports:
+        - containerPort: 80
+        - containerPort: 8082
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pasteleriportal-service
+spec:
+  selector:
+    app: pasteleriportal
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: LoadBalancer
