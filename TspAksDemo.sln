@@ -19,6 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interfaces", "Interfaces\In
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pipelines", "Pipelines", "{283DA82B-F241-4484-AF86-11C4BF281799}"
 	ProjectSection(SolutionItems) = preProject
+		Build.yml = Build.yml
 		BuildAndPushImages.yml = BuildAndPushImages.yml
 	EndProjectSection
 EndProject
