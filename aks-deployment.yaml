@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: pasteleriaapi
-        image: acrtspdev001.azurecr.io/pasteleriaapi:latest
+        image: mcr.microsoft.com/azuredocs/aci-helloworld
         ports:
         - containerPort: 8080
         - containerPort: 8081
@@ -48,7 +48,7 @@ spec:
     spec:
       containers:
       - name: pasteleriportal
-        image: acrtspdev001.azurecr.io/pasteleriportal:latest
+        image: mcr.microsoft.com/azuredocs/aci-helloworld
         ports:
         - containerPort: 80
         - containerPort: 8082
