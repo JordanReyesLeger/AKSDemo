@@ -46,7 +46,7 @@ steps:
 - task: Docker@2
   inputs:
     command: 'buildAndPush'
-    repository: 'acrtspdev001.azurecr.io/pasteleriaapi'
+    repository: 'pasteleriaapi'
     Dockerfile: 'PasteleriaApi/Dockerfile'
     containerRegistry: 'TspAcr'
     tags: |
@@ -57,7 +57,7 @@ steps:
 - task: Docker@2
   inputs:
     command: 'buildAndPush'
-    repository: 'acrtspdev001.azurecr.io/pasteleriportal'
+    repository: 'pasteleriportal'
     Dockerfile: 'Portal/Dockerfile'
     containerRegistry: 'TspAcr'
     tags: |
