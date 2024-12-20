@@ -1,28 +1,29 @@
 apiVersion: 2019-12-01
 location: eastus
-name: aci-containerpasteleria-dev-001
+name: aci-containergroup-dev-001
 properties:
   containers:
   - name: pasteleriaapi
     properties:
-      image: acrtspdev001.azurecr.io/acrtspdev001.azurecr.io/pasteleriaapi:latest
+      image: acrtspdev001.azurecr.io/pasteleriaapi:latest
       ports:
       - port: 8080
       - port: 8081
+      - port: 443
       resources:
         requests:
           cpu: 1.0
           memoryInGb: 1.5
-  - name: pasteleriportal
-    properties:
-      image: acrtspdev001.azurecr.io/acrtspdev001.azurecr.io/pasteleriportal:latest
-      ports:
-      - port: 80
-      - port: 8082
-      resources:
-        requests:
-          cpu: 1.0
-          memoryInGb: 1.5
+  # - name: pasteleriportal
+  #   properties:
+  #     image: acrtspdev001.azurecr.io/pasteleriportal:latest
+  #     ports:
+  #     - port: 80
+  #     - port: 8082
+  #     resources:
+  #       requests:
+  #         cpu: 1.0
+  #         memoryInGb: 1.5
   osType: Linux
   ipAddress:
     type: Public
@@ -32,7 +33,11 @@ properties:
     - protocol: tcp
       port: 8081
     - protocol: tcp
-      port: 80
+      port: 443
+    # - protocol: tcp
+    #   port: 80
+    # - protocol: tcp
+    #   port: 8082
   imageRegistryCredentials:
     - server: acrtspdev001.azurecr.io
       username: acrtspdev001
