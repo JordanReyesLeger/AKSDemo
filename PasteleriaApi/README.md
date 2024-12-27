@@ -29,6 +29,8 @@ kubectl get pods
 
 kubectl logs pasteleriaapi-deployment 
 
+kubectl delete pod <nombre-del-pod>
+
 
 # 8.Borrar el despliegue y el servicio:
 kubectl delete -f "C:\Dev\Tsp-AKS\aks-deployment.yaml"
