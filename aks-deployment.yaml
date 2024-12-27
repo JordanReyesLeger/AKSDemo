@@ -14,10 +14,14 @@ spec:
     spec:
       containers:
       - name: pasteleriaapi
-        image: mcr.microsoft.com/azuredocs/aci-helloworld
+        image: akscontenedoresdev02.azurecr.io/pasteleriaapi:1.0.2
         ports:
         - containerPort: 8080
-        - containerPort: 8081
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: "Development"
+        - name: ASPNETCORE_HTTP_PORTS
+          value: "8080;8081"
 ---
 apiVersion: v1
 kind: Service
@@ -28,7 +32,7 @@ spec:
     app: pasteleriaapi
   ports:
   - protocol: TCP
-    port: 80
+    port: 8080
     targetPort: 8080
   type: LoadBalancer
 ---
@@ -48,10 +52,14 @@ spec:
     spec:
       containers:
       - name: pasteleriportal
-        image: mcr.microsoft.com/azuredocs/aci-helloworld
+        image: akscontenedoresdev02.azurecr.io/pasteleriaportal:1.0.2
         ports:
-        - containerPort: 80
         - containerPort: 8082
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: "Development"
+        - name: ASPNETCORE_HTTP_PORTS
+          value: "80;8082"
 ---
 apiVersion: v1
 kind: Service
@@ -62,6 +70,6 @@ spec:
     app: pasteleriportal
   ports:
   - protocol: TCP
-    port: 80
-    targetPort: 80
+    port: 8082
+    targetPort: 8082
   type: LoadBalancer

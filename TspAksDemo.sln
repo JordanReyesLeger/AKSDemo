@@ -32,6 +32,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Aks", "Aks", "{88E5B451-AE0A-4C1C-97EB-EAC33F6B9A71}"
 	ProjectSection(SolutionItems) = preProject
 		aks-deployment.yaml = aks-deployment.yaml
+		PasteleriaApi\README.md = PasteleriaApi\README.md
 	EndProjectSection
 EndProject
 Global

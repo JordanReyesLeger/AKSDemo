@@ -29,11 +29,15 @@ namespace PasteleriaApi
                 app.UseSwaggerUI();
             }
 
-            //app.UseHttpsRedirection();
-
 
             app.UseAuthorization();
 
+            // Redirigir automáticamente a Swagger
+            app.MapGet("/", context =>
+            {
+                context.Response.Redirect("/swagger/index.html");
+                return Task.CompletedTask;
+            });
 
             app.MapControllers();
 
