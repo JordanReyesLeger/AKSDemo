@@ -22,6 +22,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pipelines", "Pipelines", "{
 		Build.yml = Build.yml
 		BuildAndPushImages.yml = BuildAndPushImages.yml
 		BuildByTag.yml = BuildByTag.yml
+		update-image-version.sh = update-image-version.sh
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ContainerInstance", "ContainerInstance", "{4743DD29-A8C6-4A67-B002-CB028648C090}"

@@ -51,7 +51,7 @@ steps:
     command: 'buildAndPush'
     repository: 'pasteleriaapi'
     Dockerfile: 'PasteleriaApi/Dockerfile'
-    containerRegistry: 'TspAcr'
+    containerRegistry: 'TspMsftDocker'
     tags: |
       $(Build.BuildId)
       latest
@@ -60,9 +60,9 @@ steps:
 - task: Docker@2
   inputs:
     command: 'buildAndPush'
-    repository: 'pasteleriportal'
+    repository: 'pasteleriaportal'
     Dockerfile: 'Portal/Dockerfile'
-    containerRegistry: 'TspAcr'
+    containerRegistry: 'TspMsftDocker'
     tags: |
       $(Build.BuildId)
       latest
@@ -73,6 +73,11 @@ steps:
     contents: '**/container-group.yaml'
     targetFolder: '$(Build.ArtifactStagingDirectory)/ContainerInstance'
     flattenFolders: true
+
+- script: |
+    chmod +x update-image-version.sh
+    ./update-image-version.sh $(Build.BuildId)
+  displayName: 'Update Image Version'
 
 - task: CopyFiles@2
   inputs:
