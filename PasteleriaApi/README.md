@@ -4,13 +4,13 @@ az login
 az acr login --name akscontenedoresdev02.azurecr.io
    
 # 3.	Compila la imagen de Docker del portal:
-docker build -f "C:\Dev\Tsp-AKS\Portal\Dockerfile" --force-rm -t akscontenedoresdev02.azurecr.io/pasteleriaportal:1.0.2 --build-arg "BUILD_CONFIGURATION=Debug" "C:\Dev\Tsp-AKS"
+docker build -f "C:\Dev\Tsp-AKS\Portal\Dockerfile" --force-rm -t akscontenedoresdev02.azurecr.io/pasteleriaportal:1.0.3 --build-arg "BUILD_CONFIGURATION=Debug" "C:\Dev\Tsp-AKS"
 
 # 3.1	Compila la imagen de Docker del api:
 docker build -f "C:\Dev\Tsp-AKS\PasteleriaApi\Dockerfile" --force-rm -t akscontenedoresdev02.azurecr.io/pasteleriaapi:1.0.2 --build-arg "BUILD_CONFIGURATION=Debug" "C:\Dev\Tsp-AKS"
 
 # 4.	Sube la imagen a tu ACR portal:
-docker push akscontenedoresdev02.azurecr.io/pasteleriaportal:1.0.2
+docker push akscontenedoresdev02.azurecr.io/pasteleriaportal:1.0.3
 
 # 4.1	Sube la imagen a tu ACR api:
 docker push akscontenedoresdev02.azurecr.io/pasteleriaapi:1.0.2
@@ -35,7 +35,9 @@ kubectl delete pod <nombre-del-pod>
 # 8.Borrar el despliegue y el servicio:
 kubectl delete -f "C:\Dev\Tsp-AKS\aks-deployment.yaml"
 
-   
+
+# Attach using acr-resource-id
+az aks update --name myAKSCluster --resource-group myResourceGroup --attach-acr <acr-resource-id>
 
    
 

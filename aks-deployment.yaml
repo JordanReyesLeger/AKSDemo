@@ -1,7 +1,13 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: pasteleria-namespace
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: pasteleriaapi-deployment
+  namespace: pasteleria-namespace
 spec:
   replicas: 2
   selector:
@@ -12,6 +18,8 @@ spec:
       labels:
         app: pasteleriaapi
     spec:
+      nodeSelector:
+        role: nodoapp
       containers:
       - name: pasteleriaapi
         image: akscontenedoresdev02.azurecr.io/pasteleriaapi:1.0.2
@@ -27,6 +35,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: pasteleriaapi-service
+  namespace: pasteleria-namespace
 spec:
   selector:
     app: pasteleriaapi
@@ -40,6 +49,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: pasteleriportal-deployment
+  namespace: pasteleria-namespace
 spec:
   replicas: 2
   selector:
@@ -50,9 +60,11 @@ spec:
       labels:
         app: pasteleriportal
     spec:
+      nodeSelector:
+        role: nodoapp
       containers:
       - name: pasteleriportal
-        image: akscontenedoresdev02.azurecr.io/pasteleriaportal:1.0.2
+        image: akscontenedoresdev02.azurecr.io/pasteleriportal:1.0.2
         ports:
         - containerPort: 8082
         env:
@@ -65,6 +77,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: pasteleriportal-service
+  namespace: pasteleria-namespace
 spec:
   selector:
     app: pasteleriportal
@@ -78,6 +91,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: pasteleriaapi-clusterip-service
+  namespace: pasteleria-namespace
 spec:
   selector:
     app: pasteleriaapi
