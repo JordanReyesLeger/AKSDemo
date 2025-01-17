@@ -22,7 +22,7 @@ spec:
         role: nodoapp
       containers:
       - name: pasteleriaapi
-        image: akscontenedoresdev02.azurecr.io/pasteleriaapi:1.0.2
+        image: akscontenedoresdev02.azurecr.io/pasteleriaapi:1.0.4
         ports:
         - containerPort: 8080
         env:
@@ -51,7 +51,7 @@ metadata:
   name: pasteleriportal-deployment
   namespace: pasteleria-namespace
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: pasteleriportal
@@ -64,7 +64,7 @@ spec:
         role: nodoapp
       containers:
       - name: pasteleriportal
-        image: akscontenedoresdev02.azurecr.io/pasteleriportal:1.0.2
+        image: akscontenedoresdev02.azurecr.io/pasteleriportal:1.0.4
         ports:
         - containerPort: 8082
         env:
