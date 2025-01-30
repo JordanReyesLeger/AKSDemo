@@ -1,3 +1,8 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: pasteleria-namespace
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -13,12 +18,11 @@ spec:
       labels:
         app: pasteleriaapi
     spec:
-      serviceAccountName: pasteleria-serviceaccount  # Asegúrate de especificar el ServiceAccount aquí
       nodeSelector:
-        role: nodoapp
+        agentpool: nodoapp  # Updated nodeSelector
       containers:
       - name: pasteleriaapi
-        image: akscontenedoresdev02.azurecr.io/pasteleriaapi:1.1.0
+        image: akscontenedoresdev02.azurecr.io/pasteleriaapi:100
         ports:
         - containerPort: 8080
         env:
@@ -56,12 +60,11 @@ spec:
       labels:
         app: pasteleriportal
     spec:
-      serviceAccountName: pasteleria-serviceaccount  # Asegúrate de especificar el ServiceAccount aquí
       nodeSelector:
-        role: nodoapp
+        agentpool: nodoapp  # Updated nodeSelector
       containers:
       - name: pasteleriportal
-        image: akscontenedoresdev02.azurecr.io/pasteleriaportal:1.1.0
+        image: akscontenedoresdev02.azurecr.io/pasteleriaportal:100
         ports:
         - containerPort: 8082
         env:
@@ -97,3 +100,19 @@ spec:
     port: 8080
     targetPort: 8080
   type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pasteleriaapi-service-internal
+  namespace: pasteleria-namespace
+  annotations:
+    service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+spec:
+  selector:
+    app: pasteleriaapi
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+  type: LoadBalancer

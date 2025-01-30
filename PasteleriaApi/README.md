@@ -43,7 +43,7 @@ az aks update --name myAKSCluster --resource-group myResourceGroup --attach-acr 
 kubectl apply -f "C:\Dev\Tsp-AKS\aks-deployment-roles.yaml"
 
    
+# Get kubeck config   
+az aks get-credentials --resource-group rg-containers-dev-001 --name akscontenedoresdev02 --file kubeconfig-aks.yaml
 
-   
-   
-   
+
