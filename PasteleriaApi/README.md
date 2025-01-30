@@ -39,6 +39,9 @@ kubectl delete -f "C:\Dev\Tsp-AKS\aks-deployment.yaml"
 # Attach using acr-resource-id
 az aks update --name myAKSCluster --resource-group myResourceGroup --attach-acr <acr-resource-id>
 
+# Publicar NameSpace y Roles
+kubectl apply -f "C:\Dev\Tsp-AKS\aks-deployment-roles.yaml"
+
    
 
    
