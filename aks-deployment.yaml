@@ -19,10 +19,10 @@ spec:
         app: pasteleriaapi
     spec:
       nodeSelector:
-        role: nodoapp
+        agentpool: nodoapp  # Updated nodeSelector
       containers:
       - name: pasteleriaapi
-        image: akscontenedoresdev02.azurecr.io/pasteleriaapi:1.0.4
+        image: akscontenedoresdev02.azurecr.io/pasteleriaapi:100
         ports:
         - containerPort: 8080
         env:
@@ -61,7 +61,7 @@ spec:
         app: pasteleriportal
     spec:
       nodeSelector:
-        role: nodoapp
+        agentpool: nodoapp  # Updated nodeSelector
       containers:
       - name: pasteleriportal
         image: akscontenedoresdev02.azurecr.io/pasteleriportal:1.0.4
@@ -100,3 +100,19 @@ spec:
     port: 8080
     targetPort: 8080
   type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pasteleriaapi-service-internal
+  namespace: pasteleria-namespace
+  annotations:
+    service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+spec:
+  selector:
+    app: pasteleriaapi
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+  type: LoadBalancer

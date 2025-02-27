@@ -1,5 +1,5 @@
 trigger:
-- dev
+- master
 
 pr:
 - dev
@@ -12,39 +12,39 @@ variables:
   imageName: 'pasteleriaapi'
 
 steps:
-- task: UseDotNet@2
-  inputs:
-    packageType: 'sdk'
-    version: '8.x'
-    installationPath: $(Agent.ToolsDirectory)/dotnet
+# - task: UseDotNet@2
+#   inputs:
+#     packageType: 'sdk'
+#     version: '8.x'
+#     installationPath: $(Agent.ToolsDirectory)/dotnet
 
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'restore'
-    projects: 'PasteleriaApi/PasteleriaApi.csproj'
+# - task: DotNetCoreCLI@2
+#   inputs:
+#     command: 'restore'
+#     projects: 'PasteleriaApi/PasteleriaApi.csproj'
 
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'build'
-    projects: 'PasteleriaApi/PasteleriaApi.csproj'
-    arguments: '--configuration $(buildConfiguration)'
+# - task: DotNetCoreCLI@2
+#   inputs:
+#     command: 'build'
+#     projects: 'PasteleriaApi/PasteleriaApi.csproj'
+#     arguments: '--configuration $(buildConfiguration)'
 
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'restore'
-    projects: 'Portal/Portal.csproj'
+# - task: DotNetCoreCLI@2
+#   inputs:
+#     command: 'restore'
+#     projects: 'Portal/Portal.csproj'
 
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'build'
-    projects: 'Portal/Portal.csproj'
-    arguments: '--configuration $(buildConfiguration)'
+# - task: DotNetCoreCLI@2
+#   inputs:
+#     command: 'build'
+#     projects: 'Portal/Portal.csproj'
+#     arguments: '--configuration $(buildConfiguration)'
 
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'publish'
-    projects: 'PasteleriaApi/PasteleriaApi.csproj'
-    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/publish'
+# - task: DotNetCoreCLI@2
+#   inputs:
+#     command: 'publish'
+#     projects: 'PasteleriaApi/PasteleriaApi.csproj'
+#     arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)/publish'
 
 - task: Docker@2
   inputs:
