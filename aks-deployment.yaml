@@ -51,7 +51,7 @@ metadata:
   name: pasteleriportal-deployment
   namespace: pasteleria-namespace
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: pasteleriportal
@@ -64,7 +64,7 @@ spec:
         agentpool: nodoapp  # Updated nodeSelector
       containers:
       - name: pasteleriportal
-        image: akscontenedoresdev02.azurecr.io/pasteleriaportal:100
+        image: akscontenedoresdev02.azurecr.io/pasteleriportal:1.0.4
         ports:
         - containerPort: 8082
         env:

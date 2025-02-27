@@ -8,10 +8,16 @@ namespace Portal.Controllers
     public class PastelesController : Controller
     {
         private readonly string _apiUrl;
+        private readonly string _welcomeMessageSettings;
+        private readonly string _welcomeMessageKeyVault;
+        private readonly string _welcomeMessageKeyVaultWebApp;
 
         public PastelesController(IConfiguration configuration)
         {
             _apiUrl = configuration["ApiUrl"];
+            _welcomeMessageSettings = configuration["Messages:MessageSettings"];
+            _welcomeMessageKeyVault = configuration["Messages:MessageKeyVault"];
+            _welcomeMessageKeyVaultWebApp = configuration["Messages:KeyVaultWebApp"];
         }
 
         // Acción para mostrar la lista de pasteles
@@ -19,10 +25,12 @@ namespace Portal.Controllers
         {
             try
             {
+                ViewBag.WelcomeMessageSettings = _welcomeMessageSettings;
+                ViewBag.WelcomeMessageKeyVault = _welcomeMessageKeyVault;
+                ViewBag.WelcomeMessageKeyVaultWebApp = _welcomeMessageKeyVaultWebApp;
                 using var client = new HttpClient();
                 var response = await client.GetStringAsync(_apiUrl);
                 var pasteles = JsonSerializer.Deserialize<List<Pastel>>(response);
-
                 return View(pasteles);
             }
             catch (Exception ex)
